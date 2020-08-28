@@ -1,10 +1,14 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import Header from "./components/header";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-     <div>Hi!!</div>
+      <React.Fragment>
+        <Header />
+      </React.Fragment>
     </div>
   );
 }
