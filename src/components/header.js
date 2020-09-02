@@ -3,6 +3,16 @@ import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/cardDeck";
 
 const Header = () => {
+  function covidStats() {
+    fetch("https://api.covid19api.com/summary", {
+      method: "GET",
+    })
+      .then((res) => res.json().then((res) => console.log(res)))
+      .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    covidStats();
+  });
   return (
     <div>
       <CardDeck>
