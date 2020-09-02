@@ -21,7 +21,8 @@ const Header = () => {
   const totalCases = covidStats.TotalConfirmed;
   const totalDeaths = covidStats.TotalDeaths;
   const totalRecovered = covidStats.TotalRecovered;
-  const Date = covidStats.date;
+  const time = covidStats.date;
+  const timeReadable = new Date(date).toString();
 
   return (
     <div>
@@ -32,7 +33,7 @@ const Header = () => {
             <Card.Text>{totalCases}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-white">Last updated {date}</small>
+            <small className="text-white">Last updated {timeReadable}</small>
           </Card.Footer>
         </Card>
         <Card bg="success" text="white" style={{ margin: "10px" }}>
@@ -41,7 +42,7 @@ const Header = () => {
             <Card.Text>{totalRecovered}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-white">Last updated {date}</small>
+            <small className="text-white">Last updated {timeReadable}</small>
           </Card.Footer>
         </Card>
         <Card bg="danger" text="white" style={{ margin: "10px" }}>
@@ -50,7 +51,7 @@ const Header = () => {
             <Card.Text>{totalDeaths}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-white">Last updated {date}</small>
+            <small className="text-white">Last updated {timeReadable}</small>
           </Card.Footer>
         </Card>
       </CardDeck>
