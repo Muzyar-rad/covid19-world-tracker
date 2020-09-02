@@ -4,16 +4,25 @@ import CardDeck from "react-bootstrap/cardDeck";
 
 const Header = () => {
   const [covidStats, setCovidStats] = useState([]);
+  const [date, setDate] = useState("");
   useEffect(() => {
     fetch("https://api.covid19api.com/summary", {
       method: "GET",
     })
-      .then((res) => res.json().then((res) => setCovidStats(res.Global)))
+      .then((res) =>
+        res.json().then((res) => {
+          setCovidStats(res.Global);
+          setDate(res.Countries[0].Date);
+        })
+      )
       .catch((err) => console.log(err));
   }, []);
+
   const totalCases = covidStats.TotalConfirmed;
   const totalDeaths = covidStats.TotalDeaths;
   const totalRecovered = covidStats.TotalRecovered;
+  const Date = covidStats.date;
+
   return (
     <div>
       <CardDeck>
@@ -23,7 +32,7 @@ const Header = () => {
             <Card.Text>{totalCases}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-white">Last updated 3 mins ago</small>
+            <small className="text-white">Last updated {date}</small>
           </Card.Footer>
         </Card>
         <Card bg="success" text="white" style={{ margin: "10px" }}>
@@ -32,7 +41,7 @@ const Header = () => {
             <Card.Text>{totalRecovered}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-white">Last updated 3 mins ago</small>
+            <small className="text-white">Last updated {date}</small>
           </Card.Footer>
         </Card>
         <Card bg="danger" text="white" style={{ margin: "10px" }}>
@@ -41,7 +50,7 @@ const Header = () => {
             <Card.Text>{totalDeaths}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-white">Last updated 3 mins ago</small>
+            <small className="text-white">Last updated {date}</small>
           </Card.Footer>
         </Card>
       </CardDeck>
