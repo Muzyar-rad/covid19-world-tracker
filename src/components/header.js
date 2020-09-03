@@ -33,13 +33,22 @@ const Header = () => {
         style={{
           color: "red",
           backgroundColor: "#FFFAFA",
-          height: "25px",
-          width: "35px",
+          height: "30px",
+          width: "45px",
           textAlign: "center",
         }}
       >
         {data.cases}
-        <img alt="countryFlags" src={data.countryInfo.flag} />
+        <img
+          alt="countryFlags"
+          src={data.countryInfo.flag}
+          style={{
+            maxWidth: "20px",
+            maxHeight: "15px",
+            display: "block",
+            margin: "auto",
+          }}
+        />
       </div>
     );
   });
