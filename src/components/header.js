@@ -25,17 +25,18 @@ const Header = () => {
   let totalDeaths = covidStats.deaths;
   let totalRecovered = covidStats.recovered;
   let timeReadable = new Date(parseInt(covidStats.updated)).toString();
-  const countriesLocations = countries.map((data, flag) => {
+  const countriesLocations = countries.map((data) => {
     return (
       <div
+        key={data.countryInfo._id}
         lat={data.countryInfo.lat}
         lng={data.countryInfo.long}
         style={{
           color: "white",
           backgroundColor: "DarkGray",
           height: "30px",
-          width: "45px",
-          borderRadius: "30px",
+          width: "50px",
+          borderRadius: "25px",
           textAlign: "center",
         }}
       >
@@ -53,12 +54,20 @@ const Header = () => {
       </div>
     );
   });
-
+  let choice = "";
+  const totalCasesFunc = () => (choice = "total");
+  const totalDeathsFunc = () => (choice = "deaths");
+  const totalRecoveredFunc = () => (choice = "recovered");
   return (
     <React.Fragment>
       <h2 className="mb-5">Mazy's Worldwide Covid-19 Tracker</h2>
       <CardDeck>
-        <Card bg="secondary" text="white" style={{ margin: "10px" }}>
+        <Card
+          bg="secondary"
+          text="white"
+          style={{ margin: "10px", cursor: "pointer" }}
+          onClick={totalCasesFunc}
+        >
           <Card.Body>
             <Card.Title>Number of Cases</Card.Title>
             <Card.Text>{totalCases}</Card.Text>
@@ -67,7 +76,12 @@ const Header = () => {
             <small className="text-white">Last updated {timeReadable}</small>
           </Card.Footer>
         </Card>
-        <Card bg="success" text="white" style={{ margin: "10px" }}>
+        <Card
+          bg="success"
+          text="white"
+          style={{ margin: "10px", cursor: "pointer" }}
+          onClick={totalRecoveredFunc}
+        >
           <Card.Body>
             <Card.Title>Number of Recovered</Card.Title>
             <Card.Text>{totalRecovered}</Card.Text>
@@ -76,7 +90,12 @@ const Header = () => {
             <small className="text-white">Last updated {timeReadable}</small>
           </Card.Footer>
         </Card>
-        <Card bg="danger" text="white" style={{ margin: "10px" }}>
+        <Card
+          bg="danger"
+          text="white"
+          style={{ margin: "10px", cursor: "pointer" }}
+          onClick={totalDeathsFunc}
+        >
           <Card.Body>
             <Card.Title>Number of Deaths</Card.Title>
             <Card.Text>{totalDeaths}</Card.Text>
@@ -99,6 +118,5 @@ const Header = () => {
     </React.Fragment>
   );
 };
-console.log(process.env.REACT_APP_GOOGLE_MAP_API);
 
 export default Header;
