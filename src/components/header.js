@@ -5,7 +5,7 @@ import CardDeck from "react-bootstrap/cardDeck";
 
 const Header = () => {
   const [covidStats, setCovidStats] = useState([]);
-  const [date, setDate] = useState("");
+  const [countries, setCountries] = useState([]);
   useEffect(() => {
     Promise.all([
       fetch("https://corona.lmao.ninja/v2/all", {
@@ -17,15 +17,32 @@ const Header = () => {
         stats.json().then((stats) => {
           setCovidStats(stats);
         });
-        countries.json().then((countries) => console.log(countries));
+        countries.json().then((countries) => setCountries(countries));
       })
       .catch((err) => console.log(err));
   }, []);
-
   let totalCases = covidStats.cases;
   let totalDeaths = covidStats.deaths;
   let totalRecovered = covidStats.recovered;
   let timeReadable = new Date(parseInt(covidStats.updated)).toString();
+  const countriesLocations = countries.map((data, flag) => {
+    return (
+      <div
+        lat={data.countryInfo.lat}
+        lng={data.countryInfo.long}
+        style={{
+          color: "red",
+          backgroundColor: "#FFFAFA",
+          height: "25px",
+          width: "35px",
+          textAlign: "center",
+        }}
+      >
+        {data.cases}
+        <img alt="countryFlags" src={data.countryInfo.flag} />
+      </div>
+    );
+  });
 
   return (
     <React.Fragment>
@@ -64,11 +81,9 @@ const Header = () => {
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyA3QsD-tdyX0KrgfbumpTBt1BsoaYnodXQ" }}
           defaultCenter={{ lat: 59.95, lng: 30.33 }}
-          defaultZoom={10}
+          defaultZoom={1}
         >
-          <div lat={59.955413} lng={30.337844}>
-            My marker
-          </div>
+          {countriesLocations}
         </GoogleMapReact>
       </div>
     </React.Fragment>
