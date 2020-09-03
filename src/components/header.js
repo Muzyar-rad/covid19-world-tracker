@@ -66,7 +66,9 @@ const Header = () => {
           defaultCenter={{ lat: 59.95, lng: 30.33 }}
           defaultZoom={10}
         >
-          <div lat={59.955413} lng={30.337844} text="My Marker"></div>
+          <div lat={59.955413} lng={30.337844}>
+            My marker
+          </div>
         </GoogleMapReact>
       </div>
     </React.Fragment>
