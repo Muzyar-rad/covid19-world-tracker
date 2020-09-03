@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import GoogleMapReact from "google-map-react";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/cardDeck";
 
@@ -27,7 +28,8 @@ const Header = () => {
   let timeReadable = new Date(parseInt(covidStats.updated)).toString();
 
   return (
-    <div>
+    <React.Fragment>
+      <h2 className="mb-5">Mazy's Worldwide Covid-19 Tracker</h2>
       <CardDeck>
         <Card bg="secondary" text="white" style={{ margin: "10px" }}>
           <Card.Body>
@@ -57,7 +59,17 @@ const Header = () => {
           </Card.Footer>
         </Card>
       </CardDeck>
-    </div>
+      <br />
+      <div style={{ height: "100vh", width: "100%" }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: "AIzaSyA3QsD-tdyX0KrgfbumpTBt1BsoaYnodXQ" }}
+          defaultCenter={{ lat: 59.95, lng: 30.33 }}
+          defaultZoom={10}
+        >
+          <div lat={59.955413} lng={30.337844} text="My Marker"></div>
+        </GoogleMapReact>
+      </div>
+    </React.Fragment>
   );
 };
 
