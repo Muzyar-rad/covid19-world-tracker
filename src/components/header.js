@@ -88,7 +88,7 @@ const Header = () => {
       <br />
       <div style={{ height: "100vh", width: "100%" }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyA3QsD-tdyX0KrgfbumpTBt1BsoaYnodXQ" }}
+          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API }}
           defaultCenter={{ lat: 59.95, lng: 30.33 }}
           defaultZoom={1}
         >
@@ -98,5 +98,6 @@ const Header = () => {
     </React.Fragment>
   );
 };
+console.log(process.env.REACT_APP_GOOGLE_MAP_API);
 
 export default Header;
