@@ -35,6 +35,7 @@ const Header = () => {
           backgroundColor: "DarkGray",
           height: "30px",
           width: "45px",
+          borderRadius: "30px",
           textAlign: "center",
         }}
       >
