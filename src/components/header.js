@@ -25,39 +25,102 @@ const Header = () => {
   let totalDeaths = covidStats.deaths;
   let totalRecovered = covidStats.recovered;
   let timeReadable = new Date(parseInt(covidStats.updated)).toString();
-  const countriesLocations = countries.map((data) => {
-    return (
-      <div
-        key={data.countryInfo._id}
-        lat={data.countryInfo.lat}
-        lng={data.countryInfo.long}
-        style={{
-          color: "white",
-          backgroundColor: "DarkGray",
-          height: "30px",
-          width: "50px",
-          borderRadius: "25px",
-          textAlign: "center",
-        }}
-      >
-        {data.cases}
-        <img
-          alt="countryFlags"
-          src={data.countryInfo.flag}
+  const totalCasesFunc = () => {
+    return countries.map((data) => {
+      return (
+        <div
+          key={data.countryInfo._id}
+          lat={data.countryInfo.lat}
+          lng={data.countryInfo.long}
           style={{
-            maxWidth: "20px",
-            maxHeight: "15px",
-            display: "block",
-            margin: "auto",
+            color: "white",
+            backgroundColor: "darkgray",
+            height: "30px",
+            width: "50px",
+            borderRadius: "25px",
+            textAlign: "center",
           }}
-        />
-      </div>
-    );
-  });
-  let choice = "";
-  const totalCasesFunc = () => (choice = "total");
-  const totalDeathsFunc = () => (choice = "deaths");
-  const totalRecoveredFunc = () => (choice = "recovered");
+        >
+          {data.cases}
+          <img
+            alt="countryFlags"
+            src={data.countryInfo.flag}
+            style={{
+              maxWidth: "20px",
+              maxHeight: "15px",
+              display: "block",
+              margin: "auto",
+            }}
+          />
+        </div>
+      );
+    });
+  };
+  const totalDeathsFunc = () => {
+    return countries.map((data) => {
+      return (
+        <div
+          key={data.countryInfo._id}
+          lat={data.countryInfo.lat}
+          lng={data.countryInfo.long}
+          style={{
+            color: "red",
+            backgroundColor: "darkgray",
+            height: "30px",
+            width: "50px",
+            borderRadius: "25px",
+            textAlign: "center",
+          }}
+        >
+          {data.deaths}
+          <img
+            alt="countryFlags"
+            src={data.countryInfo.flag}
+            style={{
+              maxWidth: "20px",
+              maxHeight: "15px",
+              display: "block",
+              margin: "auto",
+            }}
+          />
+        </div>
+      );
+    });
+  };
+  const totalRecoveredFunc = () => {
+    return countries.map((data) => {
+      return (
+        <div
+          key={data.countryInfo._id}
+          lat={data.countryInfo.lat}
+          lng={data.countryInfo.long}
+          style={{
+            color: "green",
+            backgroundColor: "white",
+            height: "30px",
+            width: "50px",
+            borderRadius: "25px",
+            textAlign: "center",
+          }}
+        >
+          {data.recovered}
+          <img
+            alt="countryFlags"
+            src={data.countryInfo.flag}
+            style={{
+              maxWidth: "20px",
+              maxHeight: "15px",
+              display: "block",
+              margin: "auto",
+            }}
+          />
+        </div>
+      );
+    });
+  };
+  const countriesNumbers = totalCasesFunc();
+  // const countriesNumbers = totalDeathsFunc();
+  // const countriesNumbers = totalRecoveredFunc();
   return (
     <React.Fragment>
       <h2 className="mb-5">Mazy's Worldwide Covid-19 Tracker</h2>
@@ -80,7 +143,6 @@ const Header = () => {
           bg="success"
           text="white"
           style={{ margin: "10px", cursor: "pointer" }}
-          onClick={totalRecoveredFunc}
         >
           <Card.Body>
             <Card.Title>Number of Recovered</Card.Title>
@@ -112,7 +174,7 @@ const Header = () => {
           defaultCenter={{ lat: 59.95, lng: 30.33 }}
           defaultZoom={1}
         >
-          {countriesLocations}
+          {countriesNumbers}
         </GoogleMapReact>
       </div>
     </React.Fragment>
