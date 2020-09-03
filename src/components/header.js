@@ -6,23 +6,25 @@ const Header = () => {
   const [covidStats, setCovidStats] = useState([]);
   const [date, setDate] = useState("");
   useEffect(() => {
-    fetch("https://api.covid19api.com/summary", {
-      method: "GET",
-    })
-      .then((res) =>
-        res.json().then((res) => {
-          setCovidStats(res.Global);
-          setDate(res.Countries[0].Date);
-        })
-      )
+    Promise.all([
+      fetch("https://corona.lmao.ninja/v2/all", {
+        method: "GET",
+      }),
+      fetch("https://corona.lmao.ninja/v2/countries", { method: "GET" }),
+    ])
+      .then(([stats, countries]) => {
+        stats.json().then((stats) => {
+          setCovidStats(stats);
+        });
+        countries.json().then((countries) => console.log(countries));
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  const totalCases = covidStats.TotalConfirmed;
-  const totalDeaths = covidStats.TotalDeaths;
-  const totalRecovered = covidStats.TotalRecovered;
-  const time = covidStats.date;
-  const timeReadable = new Date(date).toString();
+  let totalCases = covidStats.cases;
+  let totalDeaths = covidStats.deaths;
+  let totalRecovered = covidStats.recovered;
+  let timeReadable = new Date(parseInt(covidStats.updated)).toString();
 
   return (
     <div>
