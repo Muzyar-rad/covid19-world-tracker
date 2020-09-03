@@ -31,8 +31,8 @@ const Header = () => {
         lat={data.countryInfo.lat}
         lng={data.countryInfo.long}
         style={{
-          color: "red",
-          backgroundColor: "#FFFAFA",
+          color: "white",
+          backgroundColor: "DarkGray",
           height: "30px",
           width: "45px",
           textAlign: "center",
