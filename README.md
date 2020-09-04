@@ -19,7 +19,7 @@ React mobile responsive web application that shows the live status of Covid19 ca
 - Shows the current number of covid19 cases, recovered and deaths at the header section 
 - Showd the current number of covid19 cases, recovered and deaths by each country on google map
 
-**Note:** Data is being updated every 10 minutes
+   **Note:** Data is being updated every 10 minutes
 
 ## Live Demo
 
@@ -44,9 +44,9 @@ Muzyar Rad aka. Mazy
 
 - `REACT_APP_GOOGLE_MAP_API`= **{{Your google map API key}}**
 
-**Note:** You will need to provide your own google map API key from google cloud platform as mine is stored inside an environment variable
+   **Note:** You will need to provide your own google map API key from google cloud platform as mine is stored inside an environment variable
 
-**Note2:** Please refer to environment variables section in React Documentation on how to set the environment variable as there are different instructions on different operating systems
+   **Note2:** Please refer to environment variables section in React Documentation on how to set the environment variable as there are different instructions on different operating systems
 
 3. Run the project 
 
