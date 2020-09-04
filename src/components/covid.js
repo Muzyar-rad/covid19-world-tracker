@@ -3,10 +3,10 @@ import GoogleMapReact from "google-map-react";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/cardDeck";
 
-const Header = () => {
+const Covid = () => {
   const [covidStats, setCovidStats] = useState([]);
   const [countries, setCountries] = useState([]);
-  const [countriesNumbers, setCountriesNumbers] = useState([]);
+  let [countriesNumbers, setCountriesNumbers] = useState([]);
   useEffect(() => {
     Promise.all([
       fetch("https://corona.lmao.ninja/v2/all", {
@@ -22,10 +22,39 @@ const Header = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  let totalCases = covidStats.cases;
-  let totalDeaths = covidStats.deaths;
-  let totalRecovered = covidStats.recovered;
-  let timeReadable = new Date(parseInt(covidStats.updated)).toString();
+  const totalCases = covidStats.cases;
+  const totalDeaths = covidStats.deaths;
+  const totalRecovered = covidStats.recovered;
+  const timeReadable = new Date(parseInt(covidStats.updated)).toString();
+  let fixedCountriesNumbers = countries.map((data) => {
+    return (
+      <div
+        key={data.countryInfo._id}
+        lat={data.countryInfo.lat}
+        lng={data.countryInfo.long}
+        style={{
+          color: "white",
+          backgroundColor: "darkgray",
+          height: "30px",
+          width: "50px",
+          borderRadius: "25px",
+          textAlign: "center",
+        }}
+      >
+        {data.cases}
+        <img
+          alt="countryFlags"
+          src={data.countryInfo.flag}
+          style={{
+            maxWidth: "20px",
+            maxHeight: "15px",
+            display: "block",
+            margin: "auto",
+          }}
+        />
+      </div>
+    );
+  });
   const totalCasesFunc = () => {
     const countriesNumbers = countries.map((data) => {
       return (
@@ -122,10 +151,7 @@ const Header = () => {
     });
     setCountriesNumbers(countriesNumbers);
   };
-  // const countriesNumbers = totalRecoveredFunc();
-  // const countriesNumbers = totalDeathsFunc();
-  // const countriesNumbers = totalCasesFunc();
-
+  console.log(countriesNumbers);
   return (
     <React.Fragment>
       <h2 className="mb-5">Mazy's Worldwide Covid-19 Tracker</h2>
@@ -180,11 +206,11 @@ const Header = () => {
           defaultCenter={{ lat: 59.95, lng: 30.33 }}
           defaultZoom={1}
         >
-          {countriesNumbers}
+          {countriesNumbers ? countriesNumbers : fixedCountriesNumbers}
         </GoogleMapReact>
       </div>
     </React.Fragment>
   );
 };
 
-export default Header;
+export default Covid;
