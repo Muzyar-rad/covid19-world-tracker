@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import Card from "react-bootstrap/Card";
-import CardDeck from "react-bootstrap/cardDeck";
+import CardDeck from "react-bootstrap/CardDeck";
 
 const Covid = () => {
   const [covidStats, setCovidStats] = useState([]);
