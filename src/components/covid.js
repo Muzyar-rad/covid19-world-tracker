@@ -165,6 +165,9 @@ const Covid = () => {
           <Card.Body>
             <Card.Title>Number of Cases</Card.Title>
             <Card.Text>{totalCases}</Card.Text>
+            <Card.Text>
+              {"=> => Please Click Me And Watch The Map <= <="}
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text-white">Last updated {timeReadable}</small>
@@ -179,6 +182,9 @@ const Covid = () => {
           <Card.Body>
             <Card.Title>Number of Recovered</Card.Title>
             <Card.Text>{totalRecovered}</Card.Text>
+            <Card.Text>
+              {"=> => Please Click Me And Watch The Map <= <="}
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text-white">Last updated {timeReadable}</small>
@@ -193,6 +199,9 @@ const Covid = () => {
           <Card.Body>
             <Card.Title>Number of Deaths</Card.Title>
             <Card.Text>{totalDeaths}</Card.Text>
+            <Card.Text>
+              {"=> => Please Click Me And Watch The Map <= <="}
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text-white">Last updated {timeReadable}</small>
