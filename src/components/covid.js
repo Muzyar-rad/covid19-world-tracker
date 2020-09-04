@@ -6,7 +6,7 @@ import CardDeck from "react-bootstrap/cardDeck";
 const Covid = () => {
   const [covidStats, setCovidStats] = useState([]);
   const [countries, setCountries] = useState([]);
-  let [countriesNumbers, setCountriesNumbers] = useState([]);
+  const [countriesNumbers, setCountriesNumbers] = useState([]);
   useEffect(() => {
     Promise.all([
       fetch("https://corona.lmao.ninja/v2/all", {
@@ -26,7 +26,7 @@ const Covid = () => {
   const totalDeaths = covidStats.deaths;
   const totalRecovered = covidStats.recovered;
   const timeReadable = new Date(parseInt(covidStats.updated)).toString();
-  let fixedCountriesNumbers = countries.map((data) => {
+  const fixedCountriesNumbers = countries.map((data) => {
     return (
       <div
         key={data.countryInfo._id}
@@ -206,7 +206,9 @@ const Covid = () => {
           defaultCenter={{ lat: 59.95, lng: 30.33 }}
           defaultZoom={1}
         >
-          {countriesNumbers ? countriesNumbers : fixedCountriesNumbers}
+          {countriesNumbers.length !== 0
+            ? countriesNumbers
+            : fixedCountriesNumbers}
         </GoogleMapReact>
       </div>
     </React.Fragment>
