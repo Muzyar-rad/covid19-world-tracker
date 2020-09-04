@@ -27,8 +27,7 @@ Try the application live at http://covidtracker.muzyar-rad.com
 
 ## Preview
 
-
-
+![covidtracker](covidtracker.gif)
 
 ## Collaborator 
 
