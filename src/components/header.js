@@ -6,6 +6,7 @@ import CardDeck from "react-bootstrap/cardDeck";
 const Header = () => {
   const [covidStats, setCovidStats] = useState([]);
   const [countries, setCountries] = useState([]);
+  const [countriesNumbers, setCountriesNumbers] = useState([]);
   useEffect(() => {
     Promise.all([
       fetch("https://corona.lmao.ninja/v2/all", {
@@ -26,7 +27,7 @@ const Header = () => {
   let totalRecovered = covidStats.recovered;
   let timeReadable = new Date(parseInt(covidStats.updated)).toString();
   const totalCasesFunc = () => {
-    return countries.map((data) => {
+    const countriesNumbers = countries.map((data) => {
       return (
         <div
           key={data.countryInfo._id}
@@ -55,9 +56,10 @@ const Header = () => {
         </div>
       );
     });
+    setCountriesNumbers(countriesNumbers);
   };
   const totalDeathsFunc = () => {
-    return countries.map((data) => {
+    const countriesNumbers = countries.map((data) => {
       return (
         <div
           key={data.countryInfo._id}
@@ -86,9 +88,10 @@ const Header = () => {
         </div>
       );
     });
+    setCountriesNumbers(countriesNumbers);
   };
   const totalRecoveredFunc = () => {
-    return countries.map((data) => {
+    const countriesNumbers = countries.map((data) => {
       return (
         <div
           key={data.countryInfo._id}
@@ -117,10 +120,12 @@ const Header = () => {
         </div>
       );
     });
+    setCountriesNumbers(countriesNumbers);
   };
-  const countriesNumbers = totalCasesFunc();
-  // const countriesNumbers = totalDeathsFunc();
   // const countriesNumbers = totalRecoveredFunc();
+  // const countriesNumbers = totalDeathsFunc();
+  // const countriesNumbers = totalCasesFunc();
+
   return (
     <React.Fragment>
       <h2 className="mb-5">Mazy's Worldwide Covid-19 Tracker</h2>
@@ -143,6 +148,7 @@ const Header = () => {
           bg="success"
           text="white"
           style={{ margin: "10px", cursor: "pointer" }}
+          onClick={totalRecoveredFunc}
         >
           <Card.Body>
             <Card.Title>Number of Recovered</Card.Title>
