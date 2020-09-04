@@ -38,11 +38,11 @@ Muzyar Rad aka. Mazy
 
 1. Install client dependencies
 
-- `npm install` or `npm i`
+  - `npm install` or `npm i`
 
 2. Set the Google Maps key in `.env` file
 
-- `REACT_APP_GOOGLE_MAP_API`= **{{Your google map API key}}**
+  - `REACT_APP_GOOGLE_MAP_API`= **{{Your google map API key}}**
 
    **Note:** You will need to provide your own google map API key from google cloud platform as mine is stored inside an environment variable
 
@@ -50,4 +50,4 @@ Muzyar Rad aka. Mazy
 
 3. Run the project 
 
-- npm start
+  - npm start
