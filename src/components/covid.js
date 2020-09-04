@@ -151,7 +151,6 @@ const Covid = () => {
     });
     setCountriesNumbers(countriesNumbers);
   };
-  console.log(countriesNumbers);
   return (
     <React.Fragment>
       <h2 className="mb-5">Mazy's Worldwide Covid-19 Tracker</h2>
